@@ -1,6 +1,7 @@
 package LEETCODE;
-
 import java.util.Arrays;
+
+
 class Solution {
     public static String[] findRelativeRanks(int[] score) {
         int[] arr = new int[score.length];
@@ -24,6 +25,6 @@ class Solution {
     public static void main(String[] args) {
         int[] score = {10,3,9,8,4};
         String[] arr = findRelativeRanks(score);
-        for(String i : arr) System.out.println(i);
+        for(String i : arr) System.out.print(i + " ");
     }
 }
