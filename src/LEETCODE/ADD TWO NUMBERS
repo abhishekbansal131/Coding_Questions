@@ -1,0 +1,47 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+import java.math.BigInteger;
+class Solution {
+    ListNode temp3 = null;
+    public BigInteger Rev(String s){
+        String p = "";
+        for(int i=s.length()-1; i>=0; i--) p += s.charAt(i);
+        return new BigInteger(p);
+    }
+    public void insert(int val){
+        ListNode n = new ListNode(val);
+        if(temp3 == null) temp3 = n;
+        else{
+            ListNode temp = temp3;
+            while(temp.next != null) temp = temp.next;
+            temp.next = n;
+        }
+    }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        String s1 = "";
+        String s2 = "";
+        ListNode temp = l1;
+        while(temp != null){
+            s1 += String.valueOf(temp.val);
+            temp = temp.next;
+        }
+        ListNode temp2 = l2;
+        while(temp2 != null){
+            s2+= String.valueOf(temp2.val);
+            temp2 = temp2.next;
+        }
+        String sum = (Rev(s1).add(Rev(s2))).toString();
+        for(int i =sum.length()-1; i>=0; i--){
+            insert(sum.charAt(i) - '0');
+        }
+        return temp3;
+    }
+}
