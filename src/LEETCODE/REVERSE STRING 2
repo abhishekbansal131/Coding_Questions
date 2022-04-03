@@ -1,0 +1,25 @@
+class Solution {
+    public String rev(String s, int k){
+        String p = "";
+        if(s.length() < k){
+            for(int i=s.length()-1; i>=0; i--) p += s.charAt(i);
+            return p;
+        }
+        for(int i = k-1; i>=0; i--) p += s.charAt(i);
+        p += s.substring(k);
+        return p;
+    }
+    public String reverseStr(String s, int k) {
+        String p = "";
+        int a = 0;
+        if(s.length() < k){
+            return rev(s, k);
+        }
+        for(int i=0; i<s.length(); i+=(2*k)){
+            a = i+(2*k);
+            if(i + (2*k) >= s.length()) a = s.length();
+            p += rev(s.substring(i, a), k);
+        }
+        return p;
+    }
+}
