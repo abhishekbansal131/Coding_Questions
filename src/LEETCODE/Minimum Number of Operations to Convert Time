@@ -1,0 +1,27 @@
+class Solution {
+    public int convertTime(String current, String correct) {
+        int p = Integer.parseInt(current.substring(0,2)) * 60 + Integer.parseInt(current.substring(3));
+        int q = Integer.parseInt(correct.substring(0,2)) * 60 + Integer.parseInt(correct.substring(3));
+        int n = Math.abs(p-q);
+        int c = 0;
+        while(n != 0){
+            if(n>=60){
+                c += n/60;
+                n = n%60;
+            }
+            if(n>=15){
+                c += n/15;
+                n = n%15;
+            }
+            else if(n>=5 && n<15){
+                c += n/5;
+                n = n%5;
+            }
+            else if(n>=1 && n<5){
+                c += n/1;
+                n = n%1;
+            }
+        }
+        return c;
+    }
+}
