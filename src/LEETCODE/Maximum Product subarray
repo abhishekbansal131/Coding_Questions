@@ -1,0 +1,21 @@
+class Solution {
+    public int maxProduct(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        int p = 1;
+        for(int i=0; i<arr.length; i++){
+            p *= arr[i];
+            max = Math.max(p, max);
+            if(p == 0) p =1;
+        }
+        p = 1;
+        for(int i=arr.length-1; i>=0; i--){
+            p *= arr[i];
+            max = Math.max(p, max);
+            if(p == 0) p =1;
+        }
+        return max;
+    }
+}
+
+// (Yaa to max product subarray shurwaat mein mil jaayega (mtlb pehla index include rhega)....isliye pehla loop chalaya.......yaa phir subarray last mil milega...mtlb 
+//  pehla index include nhi hogaa.....beech mein tbhii mil sktaa hai jab zero aaye to uska case bhi laga diaa haii....)
