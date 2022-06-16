@@ -1,26 +1,25 @@
 package LEETCODE;
 
-public class LONGEST_PALINDROMIC_SUBSTRING {
-    public boolean palindrome(String s){
-        for(int i=0; i<s.length()/2; i++){
-            if(s.charAt(i) != s.charAt(s.length()-i-1)) return false;
-        }
-        return true;
-    }
+class Solution {
     public String longestPalindrome(String s) {
-        int c, max =0; String p = "";
-        if(s.length()==1) return s;
+        int start = 0, end = 0;
         for(int i=0; i<s.length(); i++){
-            for(int j=i+1; j<=s.length(); j++){
-                c = 0;
-                if(palindrome(s.substring(i,j))) c = j-i;
-                if(c>max){
-                    max = c;
-                    p = s.substring(i,j);
-                }
+            int odd = expand(s, i , i);
+            int even = expand(s, i, i+1);
+            int len = Math.max(odd, even);
+            if(len > end - start){
+                start = i - (len-1)/2;
+                end = i + len/2;
             }
-            if(max == s.length()) return s;
         }
-        return p;
+        return s.substring(start, end+1);
+    }
+    
+    int expand(String s, int left, int right){
+        while(left >=0 && right<s.length() && s.charAt(left) == s.charAt(right)){
+            left--;
+            right++;
+        }
+        return right - left - 1;
     }
 }
