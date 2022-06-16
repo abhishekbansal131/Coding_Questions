@@ -1,0 +1,22 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> a = new LinkedList<>();
+        int n = strs.length;
+        String[] s = new String[n];
+        for(int i = 0; i<n; i++){
+            char[] arr = strs[i].toCharArray();
+            Arrays.sort(arr);
+            s[i] = new String(arr);
+        }
+        HashMap<String, LinkedList<String>> obj = new HashMap<>();
+        for(int i=0; i<n; i++){
+            LinkedList<String> res = obj.getOrDefault(s[i], new LinkedList<>());
+            res.add(strs[i]);
+            obj.put(s[i], res);
+        }
+        for(Map.Entry<String, LinkedList<String>> res : obj.entrySet()){
+            a.add(res.getValue());
+        }
+        return a;
+    }
+}
